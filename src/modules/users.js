@@ -26,19 +26,10 @@ const usersFn = async (data, res) => {
 
     }
     else if (data.action === 'login') {
-        // UserModel.findOne({ email: data.email }, { email: 1, password: 1 }, (err, user) => {
-        //     if (err)
-        //         throw err
-        //     else {
-        //         if (user === null)
-        //             Api({ status: "error", message: "You have entered wrong email or password." }, res)
-        //         else
-        //             Api({ status: 'success', user }, res)
-        //     }
-        // })
+       
 
         let user = await UserModel.findOne({ email: data.email }, { email: 1, password: 1 })
-        const match = await bcrypt.compare(data.password, user.password);
+        const match = !user?false: await bcrypt.compare(data.password, user.password);
         // console.log(user.comparePassword(data.password))
         if (user === null || !match)
             Api({ status: "error", message: "You have entered wrong email or password." }, res)

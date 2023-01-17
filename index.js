@@ -13,7 +13,7 @@ app.use(cors());
 app.use(bodyparser.json({ limit: "50mb" }));
 app.use(bodyparser.urlencoded({ limit: "50mb", extended: true }));
 app.post("/", (req, res) => {
-  modules[req.body.module](req.body, res);
+  modules[req.body.module](req.body, res)
 });
 
 app.listen(port, () => console.log("server is running on port: " + port));

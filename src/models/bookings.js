@@ -13,17 +13,25 @@ const userSchema = new mongoose.Schema({
   cost:{
     type:Number,
   },
-  selectedCar:{
-    ref:'cars',
-    carId:mongoose.Types.ObjectId
+  // selectedCar:{
+  //   ref:'cars',
+  //   carId:mongoose.Types.ObjectId
+  // },
+  // assignedBy:{
+  //   ref:'users',
+  //   operatorId:mongoose.Types.ObjectId
+  // },
+  // assignedTo:{
+  //   ref:'users',
+  //   driverId:mongoose.Types.ObjectId
+  // },
+  pickupLocation:{
+    coordinates:[Number],
+    placeName:String
   },
-  assignedBy:{
-    ref:'users',
-    operatorId:mongoose.Types.ObjectId
-  },
-  assignedTo:{
-    ref:'users',
-    driverId:mongoose.Types.ObjectId
+  destination:{
+    coordinates:[Number],
+    placeName:String
   },
 });
 
