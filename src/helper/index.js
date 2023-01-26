@@ -8,7 +8,7 @@ const Api = (data, res) => {
         let imgUrl = `/${folder}/${(userId || 'vendor') + '_' + Date.now()}.png`
         console.log({ imgUrl })
         fs.writeFileSync('public' + imgUrl, buff)
-        let host = 'http://192.168.100.243:3001'
+        let host = 'http://192.168.100.198:3010'
         return `${host}${imgUrl}`
     }
 
