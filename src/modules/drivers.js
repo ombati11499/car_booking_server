@@ -8,7 +8,6 @@ module.exports = async (data, res) => {
   switch (data.action) {
     case "newDriver":
       let imageUrls = []
-
       for (let index = 0; index < data.uploadImages.length; index++) {
         let imageUrl = saveImage({
           folder: 'cars',
@@ -21,20 +20,26 @@ module.exports = async (data, res) => {
           let result = await newDriver.save(); //saving new driver
           Api(result, res); //return response to front end
         }
-        console.log(imageUrls)
       }
 
 
       break;
     case 'getCars':
-      let cars = await DriverModel.find({}, { car: 1 })
-      cars = cars.map(a => a.car)
+      let cars = await DriverModel.find({}, { car: 1, dailyRate: 1 })
+      console.log(cars)
+      cars = cars.map(a => ({
+        ...a.car,
+        dailyRate: a.dailyRate,
+        _id:a._id
+      }))
+      console.log(cars)
+      
       Api(cars, res)
       break;
 
     case 'getCarInfo':
       let car = await DriverModel.findOne({
-        userId: Mongoose.Types.ObjectId(data.userId)
+        _id: Mongoose.Types.ObjectId(data._id)
       }, { __v: 0 })
       Api(car, res)
       break;
