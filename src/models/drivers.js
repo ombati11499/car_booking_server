@@ -38,7 +38,7 @@ const driverSchema = new mongoose.Schema({
         numberSeats: {
             type: Number
         },
-        image: { type: String }
+        images: [String]
     },
     userId: {
         type: mongoose.Types.ObjectId,
